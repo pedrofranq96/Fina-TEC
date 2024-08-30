@@ -1,10 +1,22 @@
 
 
+using Fina.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x => {
     x.CustomSchemaIds(n => n.FullName);
 });
+
+var cnnStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
+builder.Services.AddDbContext<AppDbContext>(
+    x => 
+    {
+        x.UseSqlServer(cnnStr);
+    }
+);
+
 builder.Services.AddTransient<Handler>();
 
 var app = builder.Build();
@@ -42,12 +54,16 @@ public class Response{
 
 
 public class Handler {
-    public Response Handle(Request request){
-    return new Response{
-        Id = 4,
-        Title = request.Title
-    };
+    public Response Handle(Request request)
+    {
+        return new Response
+        {
+            Id = 4,
+            Title = request.Title
+        };
+    }
 }
-}
+
+
 
 
