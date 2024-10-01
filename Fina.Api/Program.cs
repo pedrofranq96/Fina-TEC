@@ -2,9 +2,6 @@ using Fina.Api.Common.Endpoints;
 using Fina.Api.Data;
 using Fina.Api.Handlers;
 using Fina.Core.Handlers;
-using Fina.Core.Models;
-using Fina.Core.Requests.Categories;
-using Fina.Core.Responses;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(
 );
 
 builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
+builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
 
 var app = builder.Build();
 
