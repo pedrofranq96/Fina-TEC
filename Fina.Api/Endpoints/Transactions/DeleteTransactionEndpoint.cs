@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Api.Handlers;
 using Fina.Core.Models;
@@ -17,12 +18,13 @@ namespace Fina.Api.Endpoints.Transactions
             .Produces<Response<Transaction?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler,
         long id)
     {
         var request = new DeleteTransactionRequest
         {
-            UserId = "teste@balta.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
         

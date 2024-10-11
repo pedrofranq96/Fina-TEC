@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Fina.Api.Common.Api;
 using Fina.Core.Handlers;
@@ -21,11 +22,11 @@ namespace Fina.Api.Common.Endpoints.Categories
                 .Produces<Response<Category?>>();
 
 
-        private static async Task<IResult> HandleAsync(ICategoryHandler handler, long id)
+        private static async Task<IResult> HandleAsync(ClaimsPrincipal user, ICategoryHandler handler, long id)
         {
             var request = new DeleteCategoryRequest
             {
-                UserId = "teste@balta.io",
+                UserId = user.Identity?.Name ?? string.Empty,
                 Id = id,
             };
             var result = await handler.DeleteAsync(request);

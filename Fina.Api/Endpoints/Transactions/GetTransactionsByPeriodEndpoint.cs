@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Api.Handlers;
 using Fina.Core;
@@ -19,6 +20,7 @@ namespace Fina.Api.Endpoints.Transactions
             .Produces<PagedResponse<List<Transaction>?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler,
         [FromQuery] DateTime? startDate = null,
         [FromQuery] DateTime? endDate = null,
@@ -27,7 +29,7 @@ namespace Fina.Api.Endpoints.Transactions
     {
         var request = new GetTransactionsByPeriodRequest
         {
-            UserId = "teste@balta.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             PageNumber = pageNumber,
             PageSize = pageSize,
             StartDate = startDate,

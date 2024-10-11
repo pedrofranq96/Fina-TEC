@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Api.Handlers;
 using Fina.Core.Models;
@@ -17,11 +18,12 @@ namespace Fina.Api.Endpoints.Transactions
             .Produces<Response<Transaction?>>();
 
     private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
         ITransactionHandler handler,
         UpdateTransactionRequest request,
         long id)
     {
-        request.UserId = "teste@balta.io";
+        request.UserId = user.Identity?.Name ?? string.Empty;
         request.Id = id;
         
         var result = await handler.UpdateAsync(request);

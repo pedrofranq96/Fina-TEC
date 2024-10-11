@@ -1,4 +1,5 @@
 
+using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Core.Handlers;
 using Fina.Core.Models;
@@ -17,9 +18,9 @@ namespace Fina.Api.Common.Endpoints.Categories
             .WithOrder(1)
             .Produces<Response<Category?>>();
         
-        private static async Task<IResult> HandleAsync(ICategoryHandler handler, CreateCategoryRequest request)
+        private static async Task<IResult> HandleAsync(ClaimsPrincipal user, ICategoryHandler handler, CreateCategoryRequest request)
         {
-            request.UserId = "teste@balta.io";
+            request.UserId = user.Identity?.Name ?? string.Empty;
             var result = await handler.CreateAsync(request);
             
             return result.IsSuccess 

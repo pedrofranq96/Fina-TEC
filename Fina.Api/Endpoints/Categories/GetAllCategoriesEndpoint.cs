@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Core;
 using Fina.Core.Handlers;
@@ -19,11 +20,11 @@ namespace Fina.Api.Common.Endpoints.Categories
                 .Produces<PagedResponse<List<Category>?>>();
 
 
-        private static async Task<IResult> HandleAsync(ICategoryHandler handler, [FromQuery]int pagedNumber = Configuration.DefaultPageNumber, [FromQuery]int pageSize = Configuration.DefaultPageSize)
+        private static async Task<IResult> HandleAsync(ClaimsPrincipal user, ICategoryHandler handler, [FromQuery]int pagedNumber = Configuration.DefaultPageNumber, [FromQuery]int pageSize = Configuration.DefaultPageSize)
         {
             var request = new GetAllCategoriesRequest
             {
-                UserId = "teste@balta.io",
+                UserId = user.Identity?.Name ?? string.Empty,
                 PageNumber = pagedNumber,
                 PageSize = pageSize
             };

@@ -12,7 +12,7 @@ namespace Fina.Api.Common.Endpoints
 
             endpoints.MapGroup("v1/Categories")
                     .WithTags("Categories")
-                    //.RequireAuthorization()
+                    .RequireAuthorization()
                     .MapEndpoint<CreateCategoryEndpoint>()
                     .MapEndpoint<UpdateCategoryEndpoint>()
                     .MapEndpoint<DeleteCategoryEndpoint>()
@@ -21,7 +21,7 @@ namespace Fina.Api.Common.Endpoints
 
             endpoints.MapGroup("v1/Transations")
                     .WithTags("Transations")
-                    //.RequireAuthorization()
+                    .RequireAuthorization()
                     .MapEndpoint<CreateTransactionEndpoint>()
                     .MapEndpoint<UpdateTransactionEndpoint>()
                     .MapEndpoint<DeleteTransactionEndpoint>()
