@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fina.Core", "Fina.Core\Fina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fina.Api", "Fina.Api\Fina.Api.csproj", "{947456E6-5B26-46CA-BE50-62E533CBE34F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fina.Web", "Fina.Web\Fina.Web.csproj", "{5977627F-285B-41CD-AB51-713080FD5B2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{947456E6-5B26-46CA-BE50-62E533CBE34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{947456E6-5B26-46CA-BE50-62E533CBE34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{947456E6-5B26-46CA-BE50-62E533CBE34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5977627F-285B-41CD-AB51-713080FD5B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5977627F-285B-41CD-AB51-713080FD5B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5977627F-285B-41CD-AB51-713080FD5B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5977627F-285B-41CD-AB51-713080FD5B2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

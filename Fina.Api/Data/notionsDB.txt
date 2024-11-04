@@ -19,6 +19,11 @@ docker run -v ~/docker --name sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD
 Server=localhost,1433;Database=balta;User ID=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;
 
 
+{
+  "email": "admin@admin.com",
+  "password": "Super$enha123"
+}
+
 MIGRATIONS: 
 
 adicionar: dotnet ef migrations add v1
