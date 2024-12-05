@@ -32,8 +32,8 @@ namespace Fina.Api.Endpoints
                     .MapEndpoint<GetCategoryByIdEndpoint>()
                     .MapEndpoint<GetAllCategoriesEndpoint>();
 
-            endpoints.MapGroup("v1/Transations")
-                    .WithTags("Transations")
+            endpoints.MapGroup("v1/Transactions")
+                    .WithTags("Transactions")
                     .RequireAuthorization()
                     .MapEndpoint<CreateTransactionEndpoint>()
                     .MapEndpoint<UpdateTransactionEndpoint>()

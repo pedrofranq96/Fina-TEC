@@ -32,7 +32,7 @@ public static class Configuration
         {
             Primary = Colors.LightGreen.Accent3,
             Secondary = Colors.LightGreen.Darken3,
-            // Background = Colors.LightGreen.Darken4,
+            //Background = Colors.LightGreen.Darken4,
             AppbarBackground = Colors.LightGreen.Accent3,
             AppbarText = Colors.Shades.Black,
             PrimaryContrastText = new MudColor("#000000")

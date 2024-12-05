@@ -1,6 +1,7 @@
 using Fina.Api.Data;
 using Fina.Core.Common.Extensions;
 using Fina.Core.Enums;
+using Fina.Core.Handlers;
 using Fina.Core.Models;
 using Fina.Core.Requests.Transactions;
 using Fina.Core.Responses;
@@ -11,33 +12,34 @@ namespace Fina.Api.Handlers
     public class TransactionHandler(AppDbContext context) : ITransactionHandler
     {
         public async Task<Response<Transaction?>> CreateAsync(CreateTransactionRequest request)
-    {
-        if (request is { Type: ETransactionType.Withdraw, Amount: >= 0 }) 
-            request.Amount *= -1;
-
-        try
         {
-            var transaction = new Transaction
+            if (request is { Type: ETransactionType.Withdraw, Amount: >= 0 }) 
+                request.Amount *= -1;
+
+            try
             {
-                UserId = request.UserId,
-                CategoryId = request.CategoryId,
-                CreatedAt = DateTime.Now,
-                Amount = request.Amount,
-                PaidOrReceivedAt = request.PaidOrReceivedAt,
-                Title = request.Title,
-                Type = request.Type
-            };
+                var transaction = new Transaction
+                {
+                    UserId = request.UserId,
+                    CategoryId = request.CategoryId,
+                    CreatedAt = DateTime.Now,
+                    Amount = request.Amount,
+                    PaidOrReceivedAt = request.PaidOrReceivedAt,
+                    Title = request.Title,
+                    Type = request.Type
+                };
 
-            await context.Transactions.AddAsync(transaction);
-            await context.SaveChangesAsync();
+                await context.Transactions.AddAsync(transaction);
+                await context.SaveChangesAsync();
 
-            return new Response<Transaction?>(transaction, 201, "Transação criada com sucesso!");
+                return new Response<Transaction?>(transaction, 201, "Transação criada com sucesso!");
+            }
+            catch
+            {
+                return new Response<Transaction?>(null, 500, "Não foi possível criar sua transação");
+            }
         }
-        catch
-        {
-            return new Response<Transaction?>(null, 500, "Não foi possível criar sua transação");
-        }
-    }
+
 
         public async Task<Response<Transaction?>> DeleteAsync(DeleteTransactionRequest request)
     {
@@ -122,7 +124,7 @@ namespace Fina.Api.Handlers
         }
     }
 
-         public async Task<Response<Transaction?>> UpdateAsync(UpdateTransactionRequest request)
+    public async Task<Response<Transaction?>> UpdateAsync(UpdateTransactionRequest request)
     {
         if (request is { Type: ETransactionType.Withdraw, Amount: >= 0 }) 
             request.Amount *= -1;

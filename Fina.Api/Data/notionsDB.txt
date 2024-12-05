@@ -20,8 +20,8 @@ Server=localhost,1433;Database=balta;User ID=sa;Password=1q2w3e4r@#$;Trusted_Con
 
 
 {
-  "email": "admin@admin.com",
-  "password": "Super$enha123"
+  "email": "pedro.gutierrez@email.com",
+  "password": "Tiberius@.pe1"
 }
 
 MIGRATIONS: 

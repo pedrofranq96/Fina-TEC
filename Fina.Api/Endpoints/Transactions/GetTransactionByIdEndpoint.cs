@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Fina.Api.Common.Api;
 using Fina.Api.Handlers;
+using Fina.Core.Handlers;
 using Fina.Core.Models;
 using Fina.Core.Requests.Transactions;
 using Fina.Core.Responses;
