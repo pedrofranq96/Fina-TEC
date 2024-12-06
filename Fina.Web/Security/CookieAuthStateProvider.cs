@@ -70,11 +70,10 @@ public class CookieAuthStateProvider(IHttpClientFactory clientFactory): Authenti
             return claims;
         }
 
-        claims.AddRange(from role 
-                        in roles ?? [] 
-                        where !string.IsNullOrEmpty(role.Type) || !string.IsNullOrEmpty(role.Value) 
-                        select new Claim(role.Type, role.Value, role.ValueType, role.Issuer, role.OriginalIssuer));
-        
+        foreach (var role in roles ?? [])
+            if (!string.IsNullOrEmpty(role.Type) && !string.IsNullOrEmpty(role.Value))
+                claims.Add(new Claim(role.Type, role.Value, role.ValueType, role.Issuer, role.OriginalIssuer));
+
         return claims;
     }
 

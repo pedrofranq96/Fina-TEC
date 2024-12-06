@@ -21,6 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Fina.Core\Fina.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\notionsDB.txt" />
+  </ItemGroup>
   
 
 </Project>
